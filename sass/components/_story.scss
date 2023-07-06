@@ -1,0 +1,90 @@
+.story{
+    width: 75%;
+    margin: 0 auto;
+    background-color:rgba($color-white,.7);
+    box-shadow: 0 3rem 6rem rgba($color-black,.1);
+    border-radius: .3rem;
+    padding: 6rem;
+    padding-left: 9rem;
+    font-size: $default-font-size;
+    line-height: 2.5rem;
+    transform: skewX(-12deg);
+
+    @include response(tab-port){
+        width: 100%;
+        padding: 4rem;
+        padding-left: 7rem;
+
+    }
+
+    @include response(phone){
+        transform: skewX(0);
+        
+    }
+
+
+    &_shape{
+        width:13rem;
+        height: 13rem;
+        float: left;
+        transform: translateX(-3rem) skewX(12deg);
+      position: relative;
+
+
+
+      @supports (clip-path: polygon(0 0)) or ( -webkit-clip-path:polygon(0 0)){
+        -webkit-shape-outside: circle(50% at 50% 50%);
+        shape-outside: circle(50% at 50% 50%);
+        -webkit-clip-path: circle(50% at 50% 50%);
+        clip-path: circle(50% at 50% 50%);
+        border-radius: none;
+      }
+
+      @include response(phone){
+        transform:skewX(0) translateX(-3rem);
+
+      }
+    
+
+    }
+    &_image{
+        height: 100%;
+       transform: translateX(-4rem) scale(1.4);
+       transition: all .2s;
+       
+    }
+    &_text{
+        transform: skewX(12deg);
+
+        @include response(phone){
+            transform: skewX(0) ;
+    
+        }
+    }
+    &_caption{
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, 20%);
+        color: $color-white;
+        text-align: center;
+        text-transform: uppercase;
+        font-size: 1.7rem;
+        opacity: 0;
+        transition: all .2s;
+
+
+    }
+
+    &:hover &_caption{
+          opacity: 1;
+          transform: translate(-50% ,-20%);
+          
+    }
+    
+    &:hover &_image{
+        transform: translateX(-4rem) scale(1);
+        filter: blur(3px) brightness(80%);
+    }
+
+}
